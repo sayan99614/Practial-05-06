@@ -47,7 +47,7 @@ function MainCard(props) {
             </tbody>
           </table>
 
-          {hover && (
+          {hover && user && (
             <div className="card shadow-lg p-3 hovercard text-center">
               <Avatar round size="100" src={user.avatar} />
               <h6 className="mt-2">{`${user.first_name} ${user.last_name}`}</h6>
