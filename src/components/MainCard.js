@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./maincard.css";
 import UserProfile from "./UserProfile";
 import { data } from "./data";
-import Avatar from "react-avatar";
+import UserCard from "./UserCard";
 function MainCard(props) {
   const [hover, setHover] = useState(false);
   const [showId, setShowId] = useState(null);
@@ -17,7 +17,7 @@ function MainCard(props) {
   return (
     <div className="row">
       <div className="col-sm-8 offset-sm-2">
-        <div className="card card-body shadow-sm p-5 mt-5">
+        <div className="card card-body shadow-sm p-3 mt-4">
           <table className="table table-borderless padding-table-columns">
             <thead>
               <tr>
@@ -47,12 +47,7 @@ function MainCard(props) {
             </tbody>
           </table>
 
-          {hover && user && (
-            <div className="card shadow-lg p-3 hovercard text-center">
-              <Avatar round size="100" src={user.avatar} />
-              <h6 className="mt-2">{`${user.first_name} ${user.last_name}`}</h6>
-            </div>
-          )}
+          {hover && user && <UserCard user={user} />}
         </div>
       </div>
     </div>
