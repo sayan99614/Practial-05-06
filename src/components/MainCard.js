@@ -11,14 +11,13 @@ function MainCard(props) {
   useEffect(() => {
     const singledata = data.find((item) => showId === item.id);
     setUser(singledata);
-    console.log(user);
-  });
+  }, [showId]);
 
   return (
     <div className="row">
       <div className="col-sm-8 offset-sm-2">
         <div className="card card-body shadow-sm p-3 mt-4">
-          <table className="table table-borderless padding-table-columns">
+          <table className="table table-borderless">
             <thead>
               <tr>
                 <th scope="col">Name</th>
@@ -46,9 +45,8 @@ function MainCard(props) {
               })}
             </tbody>
           </table>
-
-          {hover && user && <UserCard user={user} />}
         </div>
+        {hover && user && <UserCard user={user} />}
       </div>
     </div>
   );

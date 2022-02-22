@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Line } from "rc-progress";
 import "./maincard.css";
 import Avatar from "react-avatar";
 function UserCard({ user }) {
+  let usage = [35, 45, 65, 55, 75, 89];
+  const usagePercent = useMemo(() => {
+    return usage[Math.floor(Math.random() * usage.length)];
+  }, []);
   return (
     <div className="card shadow-lg p-3 hovercard usercard">
       <div className="text-center">
@@ -14,7 +18,7 @@ function UserCard({ user }) {
         <div className="mt-3">
           <span className="fw-normal">Plan Uses</span>
           <Line
-            percent={25}
+            percent={usagePercent}
             strokeWidth="2"
             strokeColor="#feb23f"
             className="mt-3 w-75 mx-2"
