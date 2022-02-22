@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Avatar from "react-avatar";
 import "./userprofile.css";
 function UserProfile({
@@ -21,6 +21,10 @@ function UserProfile({
     setHover(false);
   }
 
+  let access = ["Manager", "Read", "View"];
+  const accessType = useMemo(() => {
+    return access[Math.floor(Math.random() * access.length)];
+  }, []);
   return (
     <tr>
       <th>
@@ -39,16 +43,22 @@ function UserProfile({
         </div>
       </th>
       <td>
-        <select className="form-select form-control-sm" id="example1">
-          <option>1</option>
-          <option>2</option>
-        </select>
+        {id === 1 ? (
+          <h6 className="text-success">Active</h6>
+        ) : (
+          <select className="form-select form-control-sm" id="example1">
+            <option>Inactive</option>
+          </select>
+        )}
       </td>
       <td>
-        <select className="form-select form-control-sm">
-          <option>1</option>
-          <option>2</option>
-        </select>
+        {id === 1 ? (
+          <p className="fw-bold">Owner</p>
+        ) : (
+          <select className="form-select form-control-sm">
+            <option>{accessType}</option>
+          </select>
+        )}
       </td>
       <td>
         {isOwner ? (
