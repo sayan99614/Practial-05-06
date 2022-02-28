@@ -1,26 +1,26 @@
-import React, { useMemo } from "react";
 import Avatar from "react-avatar";
+import { useDispatch, useSelector } from "react-redux";
 import "./userprofile.css";
-function UserProfile({
-  isOwner,
-  email,
-  first_name,
-  last_name,
-  avatar,
-  id,
-  hover,
-  setHover,
-  setShowId,
-}) {
+import {
+  hideCard,
+  showCard,
+  setUser,
+  removeUser,
+  deleteUser,
+} from "../Actions/actions";
+import { useMemo } from "react";
+function UserProfile({ isOwner, email, first_name, last_name, avatar, id }) {
+  const data = useSelector((state) => state.listReducer);
+  const dispatch = useDispatch();
   function mouseEnter(id) {
-    setShowId(id);
-    setHover(true);
+    const user = data.find((item) => item.id === id);
+    dispatch(setUser(user));
+    dispatch(showCard(true));
   }
-
   function mouseOut() {
-    setHover(false);
+    dispatch(removeUser());
+    dispatch(hideCard(false));
   }
-
   let access = ["Manager", "Read", "View"];
   const accessType = useMemo(() => {
     return access[Math.floor(Math.random() * access.length)];
@@ -43,17 +43,17 @@ function UserProfile({
         </div>
       </th>
       <td>
-        {id === 1 ? (
-          <h6 className="text-success">Active</h6>
+        {isOwner ? (
+          <p className="text-success">Active</p>
         ) : (
-          <select className="form-select form-control-sm" id="example1">
+          <select className="form-select form-control-sm">
             <option>Inactive</option>
           </select>
         )}
       </td>
       <td>
-        {id === 1 ? (
-          <p className="fw-bold">Owner</p>
+        {isOwner ? (
+          <p className="text-secondary">Owner</p>
         ) : (
           <select className="form-select form-control-sm">
             <option>{accessType}</option>
@@ -64,7 +64,10 @@ function UserProfile({
         {isOwner ? (
           <i className="fa-solid fa-lock fa-lg text-secondary" />
         ) : (
-          <i className="fa-solid fa-trash-can fa-lg text-secondary"></i>
+          <i
+            onClick={() => dispatch(deleteUser(id))}
+            className="fa-solid fa-trash-can fa-lg text-secondary pointer"
+          ></i>
         )}
       </td>
     </tr>

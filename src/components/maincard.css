@@ -23,12 +23,39 @@
   padding: 0px 0px 0px 80px;
 }
 
-.hovercard {
+.btn-warning {
+  background-color: rgb(254, 178, 63);
+  font-weight: 600;
+}
+.text-left {
   position: absolute;
-  width: 250px;
-  right: 120px;
-  top: 100px;
-  border-radius: 25px;
+  left: 22px;
+}
+
+.devider {
+  width: 1px;
+  background-color: black;
+  height: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 18px;
+}
+
+.line-height {
+  line-height: 5px;
+}
+
+.times {
+  line-height: 0px;
+  margin-top: 5px;
+  font-size: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.desc {
+  font-size: 10px;
 }
 .btn-warning {
   background-color: rgb(254, 178, 63);
